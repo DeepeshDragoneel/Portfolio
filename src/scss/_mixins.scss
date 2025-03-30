@@ -1,0 +1,73 @@
+@mixin flex($direction: row, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin grid($columns: 1fr 1fr, $gap: 1rem) {
+    display: grid;
+    grid-template-columns: $columns;
+    gap: $gap;
+}
+
+@mixin button($bg-color: $primary-color, $text-color: white) {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: $bg-color;
+    color: $text-color;
+    border: none;
+    border-radius: 30px;
+    font-family: $font-primary;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all $transition-speed ease-in-out;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+    &:hover {
+        background-color: darken($bg-color, 10%);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+}
+
+@mixin section-padding {
+    padding: 5rem 0;
+
+    @media (max-width: 768px) {
+        padding: 3rem 0;
+    }
+}
+
+@mixin card {
+    background-color: white;
+    border-radius: $border-radius;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform $transition-speed ease-in-out,
+        box-shadow $transition-speed ease-in-out;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+}
+
+@mixin heading {
+    position: relative;
+    margin-bottom: 2rem;
+    font-family: $font-secondary;
+    font-weight: 600;
+
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background-color: $primary-color;
+    }
+}

@@ -1,0 +1,61 @@
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Responsive Mixins
+@mixin sm {
+    @media (min-width: #{$breakpoint-sm}) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (min-width: #{$breakpoint-md}) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media (min-width: #{$breakpoint-lg}) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media (min-width: #{$breakpoint-xl}) {
+        @content;
+    }
+}
+
+@mixin max-sm {
+    @media (max-width: #{$breakpoint-sm - 1px}) {
+        @content;
+    }
+}
+
+@mixin max-md {
+    @media (max-width: #{$breakpoint-md - 1px}) {
+        @content;
+    }
+}
+
+@mixin max-lg {
+    @media (max-width: #{$breakpoint-lg - 1px}) {
+        @content;
+    }
+}
+
+@mixin max-xl {
+    @media (max-width: #{$breakpoint-xl - 1px}) {
+        @content;
+    }
+}
+
+// Custom breakpoint
+@mixin breakpoint($bp) {
+    @media (min-width: #{$bp}) {
+        @content;
+    }
+}
