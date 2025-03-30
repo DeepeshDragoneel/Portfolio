@@ -32,6 +32,7 @@
 
     &__container {
         @include flex(row, space-between, center);
+        align-items: center;
     }
 
     &__logo {
@@ -57,6 +58,7 @@
             background-color: white;
             flex-direction: column;
             justify-content: flex-start;
+            align-items: center;
             padding: 5rem 2rem;
             transition: right $transition-speed ease-in-out;
             box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
@@ -65,6 +67,7 @@
                 right: 0;
             }
         }
+        margin: 0 !important
     }
 
     &__item {

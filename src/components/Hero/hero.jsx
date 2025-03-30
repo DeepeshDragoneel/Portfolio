@@ -104,9 +104,9 @@ const Hero = () => {
                     </h1>
                     <h2 className="hero__subtitle">Software Engineer</h2>
                     <p className="hero__description">
-                        Passionate software engineer specializing in building
-                        responsive web applications and solving complex problems
-                        with elegant solutions.
+                        A Dynamic Full Stack Web Developer,
+                        Competitive Coder, and aspiring AI Engineer, building
+                        innovative solutions across diverse domains.
                     </p>
                     <div className="hero__cta">
                         <Link
@@ -134,7 +134,7 @@ const Hero = () => {
 
                 <div className="hero__socials">
                     <a
-                        href="https://github.com/yourusername"
+                        href="https://github.com/DeepeshDragoneel"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hero__social-link"
@@ -142,7 +142,7 @@ const Hero = () => {
                         <FaGithub />
                     </a>
                     <a
-                        href="https://linkedin.com/in/yourusername"
+                        href="https://www.linkedin.com/in/jakkala-siva-venkata-deepesh-5a367b160/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hero__social-link"
@@ -150,7 +150,7 @@ const Hero = () => {
                         <FaLinkedin />
                     </a>
                     <a
-                        href="mailto:your.email@example.com"
+                        href="mailto:deepeshash444@gmail.com"
                         className="hero__social-link"
                     >
                         <FaEnvelope />

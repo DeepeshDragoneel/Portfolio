@@ -43,7 +43,7 @@ const Navbar = () => {
             <div className="container navbar__container">
                 <div className="navbar__logo">
                     <Link to="hero" smooth={true} duration={500} offset={-70}>
-                        <span>Deepesh</span>
+                        <span>Deepesh Jakkala</span>
                     </Link>
                 </div>
 

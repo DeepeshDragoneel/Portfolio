@@ -32,23 +32,36 @@ const About = () => {
                     <div className="about__text">
                         <p>
                             I am a passionate <strong>Software Engineer</strong>{" "}
-                            with a strong foundation in full-stack development.
-                            My expertise spans across front-end technologies
-                            like <strong>React</strong> and{" "}
-                            <strong>Angular</strong>, as well as back-end
-                            frameworks including <strong>Node.js</strong> and{" "}
-                            <strong>Express</strong>.
+                            with a strong foundation in Full-stack development
+                            for crafting efficient and scalable web
+                            applications. My experience spans the full
+                            development lifecycle, from designing and
+                            implementing user interfaces with{" "}
+                            <strong>React</strong> to building robust backends
+                            using <strong>Java Spring Boot</strong> and{" "}
+                            <strong>Node.js</strong>.
                         </p>
                         <p>
-                            With a proven track record of delivering
-                            high-quality software solutions, I'm dedicated to
-                            writing clean, maintainable code that solves complex
-                            problems efficiently. I thrive in collaborative
-                            environments and enjoy tackling challenging projects
-                            that push the boundaries of what's possible with
-                            modern web technologies.
+                            Beyond development, I am an avid problem-solver,
+                            demonstrated by my achievements in competitive
+                            coding{" "}
+                            <strong>
+                                (Codeforces Specialist, Codechef 5-Star)
+                            </strong>{" "}
+                            and my success in hackathons, where I've developed
+                            innovative solutions using cutting-edge
+                            technologies, including LLMs.
                         </p>
                         <p>
+                            At{" "}
+                            <strong>
+                                Palo Alto Networks, Inc.
+                            </strong>
+                            , I have a proven track record of contributing to
+                            critical projects, with a focus on optimizing
+                            performance and improving operational efficiency. I
+                            am eager to leverage my skills and passion to tackle
+                            new challenges and build impactful solutions.
                             My approach to software development combines
                             technical expertise with a user-centered mindset,
                             ensuring that the applications I build not only
@@ -98,15 +111,15 @@ const About = () => {
                         <div className="about__info">
                             <div className="about__info-item">
                                 <FaEnvelope className="about__info-icon" />
-                                <span>jakkala.deepesh@example.com</span>
+                                <span>deepeshash444@gmail.com</span>
                             </div>
                             <div className="about__info-item">
                                 <FaPhone className="about__info-icon" />
-                                <span>+1 (123) 456-7890</span>
+                                <span>+91-9985452459</span>
                             </div>
                             <div className="about__info-item">
                                 <FaMapMarkerAlt className="about__info-icon" />
-                                <span>San Francisco, CA</span>
+                                <span>Banglore, India</span>
                             </div>
                             <div className="about__info-item">
                                 <FaCalendarAlt className="about__info-icon" />

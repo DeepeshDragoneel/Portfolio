@@ -1,1471 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+// Import base styles, variables, mixins
 @import "variables";
 @import "mixins";
 @import "responsive";
 
-// Import Google Fonts
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap");
+// Custom scrollbar
+// For Webkit browsers (Chrome, Safari, Edge)
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 10px;
+}
+
+// For Firefox
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #000000 transparent;
+}
 
 // Reset
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+// Global styles
 body {
-    font-family: $font-primary;
-    font-size: 16px;
-    line-height: 1.6;
-    color: $text-color;
-    background-color: $background-color;
+  font-family: "Roboto", sans-serif;
+  color: $text-color;
+  background-color: #fdfdfd;
+  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: $font-secondary;
-    margin-bottom: 1rem;
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  color: $heading-color;
 }
 
 h1 {
-    font-size: 3rem;
-
-    @include max-md {
-        font-size: 2.5rem;
-    }
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
 h2 {
-    font-size: 2.5rem;
-
-    @include max-md {
-        font-size: 2rem;
-    }
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 h3 {
-    font-size: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
 
-    @include max-md {
-        font-size: 1.75rem;
-    }
+h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 p {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 a {
-    color: $primary-color;
-    text-decoration: none;
-    transition: color $transition-speed ease-in-out;
+  text-decoration: none;
+  color: $primary-color;
+  transition: color $transition-speed ease;
 
-    &:hover {
-        color: darken($primary-color, 15%);
-    }
+  &:hover {
+    color: darken($primary-color, 10%);
+  }
 }
 
-ul {
-    list-style: none;
+ul, ol {
+  list-style: none;
+  margin-bottom: 1rem;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 // Loading
 .loading {
-    @include flex(column);
-    height: 100vh;
-    width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $dark-bg-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 
-    &__spinner {
-        width: 50px;
-        height: 50px;
-        border: 5px solid rgba($primary-color, 0.2);
-        border-top-color: $primary-color;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin-bottom: 1rem;
-    }
-}
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  &__spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: $primary-color;
+    animation: spin 1s linear infinite;
+  }
 }
 
 // Container
 .container {
-    width: 100%;
-    max-width: $container-width;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-// Navbar
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: $z-nav;
-    transition: all $transition-speed ease-in-out;
-    padding: 1rem 0;
-    background-color: transparent;
-
-    &--scrolled {
-        background-color: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        padding: 0.5rem 0;
-
-        .navbar__link {
-            color: $text-color;
-
-            &--active {
-                color: $primary-color;
-            }
-        }
-
-        .navbar__logo span {
-            color: $text-color;
-        }
-    }
-
-    &__container {
-        @include flex(row, space-between, center);
-    }
-
-    &__logo {
-        font-family: $font-secondary;
-        font-weight: 700;
-        font-size: 1.5rem;
-
-        span {
-            color: white;
-            transition: color $transition-speed ease-in-out;
-        }
-    }
-
-    &__menu {
-        @include flex(row, flex-end, center);
-
-        @include max-md {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 70%;
-            height: 100vh;
-            background-color: white;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding: 5rem 2rem;
-            transition: right $transition-speed ease-in-out;
-            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-
-            &--open {
-                right: 0;
-            }
-        }
-    }
-
-    &__item {
-        margin: 0 1rem;
-
-        @include max-md {
-            margin: 1rem 0;
-        }
-    }
-
-    &__link {
-        color: white;
-        font-weight: 500;
-        transition: color $transition-speed ease-in-out;
-        cursor: pointer;
-        position: relative;
-        padding-bottom: 5px;
-
-        &:after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: $primary-color;
-            transition: width $transition-speed ease-in-out;
-        }
-
-        &:hover,
-        &--active {
-            color: $primary-color;
-
-            &:after {
-                width: 100%;
-            }
-        }
-
-        @include max-md {
-            color: $text-color;
-        }
-    }
-
-    &__menu-toggle {
-        display: none;
-        font-size: 1.5rem;
-        color: white;
-        cursor: pointer;
-        transition: color $transition-speed ease-in-out;
-        z-index: $z-nav + 1;
-
-        @include max-md {
-            display: block;
-        }
-
-        .navbar--scrolled & {
-            color: $text-color;
-        }
-    }
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 // Section
 .section {
-    @include section-padding;
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+
+  &--alt {
+    background-color: #f8f9fa;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
     position: relative;
-    overflow: hidden;
+    display: inline-block;
 
-    // Add a border and increased padding between sections
-    padding: 6rem 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-
-    // Add section separator
     &:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100px;
-        height: 3px;
-        background-color: rgba($primary-color, 0.2);
+      content: "";
+      position: absolute;
+      bottom: -0.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background-color: $primary-color;
+      border-radius: 2px;
     }
+  }
 
-    &__title {
-        text-align: center;
-        margin-bottom: 4rem;
-
-        h2 {
-            display: inline-block;
-            position: relative;
-            padding-bottom: 15px;
-
-            &:after {
-                content: "";
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 80px;
-                height: 3px;
-                background-color: $primary-color;
-            }
-        }
-    }
-
-    // Alternating section backgrounds
-    &:nth-child(odd) {
-        background-color: #ffffff;
-    }
-
-    &:nth-child(even) {
-        background-color: #f8f9fa;
-    }
-
-    // Content animation on scroll
-    .container {
-        position: relative;
-        z-index: 2;
-    }
-
-    &__title h2 {
-        animation: slideInUp 0.8s ease-out forwards;
-    }
-
-    .about__content,
-    .timeline,
-    .projects__grid,
-    .achievements__grid,
-    .skills-container,
-    .contact__container {
-        animation: slideInUp 1s ease-out forwards;
-        animation-delay: 0.2s;
-        opacity: 0;
-    }
+  &__subtitle {
+    font-size: 1.1rem;
+    color: $secondary-color;
+    max-width: 600px;
+    margin: 0 auto;
+  }
 }
 
-// Section dividers
-.section-divider {
-    height: 100px;
-    position: relative;
-    background: linear-gradient(
-        to bottom right,
-        $primary-color 0%,
-        lighten($primary-color, 20%) 100%
-    );
-    clip-path: polygon(0 0, 100% 0, 100% 70%, 0% 100%);
-    margin-top: -1px;
-    z-index: 1;
+// Animations
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-// Animation for section content
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-20px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-10px) translateX(-50%);
+  }
 }
 
 // Buttons
 .btn {
-    @include button;
+  @include button;
 
-    &--secondary {
-        @include button($secondary-color);
+  &--secondary {
+    @include button($secondary-color);
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: 2px solid $primary-color;
+    color: $primary-color;
+    box-shadow: none;
+
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     }
-
-    &--outline {
-        background-color: transparent;
-        border: 2px solid $primary-color;
-        color: $primary-color;
-        box-shadow: none;
-
-        &:hover {
-            background-color: $primary-color;
-            color: white;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
-    }
-}
-
-// Skills
-.skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-
-    &__item {
-        background-color: #f8f9fa;
-        border: 1px solid $border-color;
-        border-radius: 20px;
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-        transition: all $transition-speed ease;
-
-        &:hover {
-            background-color: $primary-color;
-            color: white;
-            border-color: $primary-color;
-            transform: translateY(-3px);
-        }
-    }
-}
-
-// Timeline
-.timeline {
-    position: relative;
-    padding-left: 2rem;
-    z-index: 2;
-
-    &:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 3px;
-        background: linear-gradient(
-            to bottom,
-            $primary-color 0%,
-            lighten($primary-color, 30%) 100%
-        );
-        border-radius: 4px;
-    }
-
-    &__item {
-        position: relative;
-        margin-bottom: 3rem;
-        padding-bottom: 1rem;
-
-        &:before {
-            content: "";
-            position: absolute;
-            left: -2.1rem;
-            top: 0.5rem;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: $primary-color;
-            border: 3px solid white;
-            box-shadow: 0 0 0 2px $primary-color;
-            transition: all 0.3s ease;
-        }
-
-        &:hover:before {
-            transform: scale(1.2);
-            background: white;
-            border-color: $primary-color;
-        }
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-
-    &__date {
-        font-weight: 500;
-        color: $secondary-color;
-        margin-bottom: 0.5rem;
-        font-size: 0.9rem;
-    }
-
-    &__title {
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        color: $text-color;
-    }
-
-    &__subtitle {
-        color: $secondary-color;
-        margin-bottom: 1rem;
-        font-size: 1rem;
-        font-weight: 500;
-    }
-
-    &__content {
-        color: $text-color;
-
-        ul {
-            list-style: disc;
-            padding-left: 1.5rem;
-
-            li {
-                margin-bottom: 0.5rem;
-
-                &:last-child {
-                    margin-bottom: 0;
-                }
-            }
-        }
-    }
-}
-
-// Experience section specific styles
-.experience {
-    background-color: #f8f9fa;
-    position: relative;
-
-    // Decorative element
-    &:before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 200px;
-        height: 200px;
-        background-color: rgba($primary-color, 0.05);
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-        z-index: 0;
-    }
-}
-
-// Project Card
-.project-card {
-    @include card;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-
-    &__image-container {
-        width: 100%;
-        height: 200px;
-        overflow: hidden;
-        border-radius: $border-radius $border-radius 0 0;
-        margin: -1.5rem -1.5rem 1.5rem -1.5rem;
-    }
-
-    &__image-placeholder {
-        width: 100%;
-        height: 100%;
-        background-color: lighten($primary-color, 35%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: $primary-color;
-        font-size: 3rem;
-    }
-
-    &__title {
-        font-size: 1.25rem;
-        margin-bottom: 0.75rem;
-        font-weight: 600;
-    }
-
-    &__description {
-        flex-grow: 1;
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-        font-size: 0.95rem;
-    }
-
-    &__tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
-
-        span {
-            background-color: lighten($primary-color, 35%);
-            color: darken($primary-color, 10%);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-    }
-
-    &__links {
-        display: flex;
-        gap: 1rem;
-        margin-top: auto;
-
-        .btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            padding: 0.4rem 1rem;
-
-            &--small {
-                font-size: 0.85rem;
-                padding: 0.4rem 1rem;
-            }
-        }
-    }
-}
-
-// Animation
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in {
-    animation: fadeIn 0.6s ease-in-out forwards;
+  }
 }
 
 // Utility classes
 .text-center {
-    text-align: center;
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .mb-1 {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .mb-2 {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .mb-3 {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .mb-4 {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .mb-5 {
-    margin-bottom: 3rem;
-}
-
-// Hero Section
-.hero {
-    position: relative;
-    height: 100vh;
-    min-height: 600px;
-    background: linear-gradient(135deg, $dark-bg-color 0%, #121212 100%);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-
-    &__particles {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: $z-particles;
-        pointer-events: none;
-
-        #tsparticles {
-            width: 100%;
-            height: 100%;
-            canvas {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100% !important;
-                height: 100% !important;
-                pointer-events: auto;
-            }
-        }
-    }
-
-    &__container {
-        position: relative;
-        z-index: 1;
-        padding-top: 0;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-
-    &__content {
-        width: 100%;
-        max-width: 800px;
-        color: $light-text-color;
-        animation: fadeIn 0.8s ease-in-out forwards;
-        margin-bottom: 2rem;
-    }
-
-    &__greeting {
-        font-size: 1.5rem;
-        font-weight: 500;
-        color: $primary-color;
-        margin-bottom: 0.5rem;
-        letter-spacing: 1px;
-
-        @include max-md {
-            font-size: 1.25rem;
-        }
-    }
-
-    &__title {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        background: linear-gradient(90deg, #ffffff, $primary-color);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-
-        @include max-md {
-            font-size: 2.5rem;
-        }
-    }
-
-    &__subtitle {
-        font-size: 1.75rem;
-        font-weight: 500;
-        margin-bottom: 1.5rem;
-
-        @include max-md {
-            font-size: 1.5rem;
-        }
-    }
-
-    &__description {
-        font-size: 1.2rem;
-        margin-bottom: 2.5rem;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.8;
-
-        @include max-md {
-            font-size: 1rem;
-        }
-    }
-
-    &__cta {
-        display: flex;
-        gap: 1.5rem;
-        margin-bottom: 3rem;
-        justify-content: center;
-
-        @include max-sm {
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-
-            .btn {
-                width: 200px;
-                text-align: center;
-            }
-        }
-    }
-
-    &__socials {
-        display: flex;
-        gap: 2rem;
-        font-size: 1.75rem;
-        margin-bottom: 4rem;
-    }
-
-    &__social-link {
-        color: $light-text-color;
-        transition: all $transition-speed ease-in-out;
-
-        &:hover {
-            color: $primary-color;
-            transform: translateY(-5px);
-        }
-    }
-
-    &__scroll {
-        position: absolute;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 1.5rem;
-        animation: bounce 2s infinite;
-
-        a {
-            color: $light-text-color;
-            transition: all $transition-speed ease-in-out;
-
-            &:hover {
-                color: $primary-color;
-            }
-        }
-    }
-}
-
-@keyframes bounce {
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-        transform: translateY(0) translateX(-50%);
-    }
-    40% {
-        transform: translateY(-20px) translateX(-50%);
-    }
-    60% {
-        transform: translateY(-10px) translateX(-50%);
-    }
-}
-
-// About Section
-.about {
-    background-color: #ffffff;
-    position: relative;
-
-    // Decorative element
-    &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 300px;
-        height: 300px;
-        background-color: rgba($primary-color, 0.05);
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-        z-index: 0;
-    }
-
-    &__content {
-        display: grid;
-        gap: 2rem;
-
-        @include md {
-            grid-template-columns: 1fr 2fr;
-            align-items: flex-start;
-        }
-    }
-
-    &__image-container {
-        @include flex(column, center, center);
-    }
-
-    &__image {
-        width: 280px;
-        height: 280px;
-        border-radius: 50%;
-        overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        border: 5px solid white;
-        position: relative;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        &-placeholder {
-            width: 100%;
-            height: 100%;
-            background-color: lighten($primary-color, 30%);
-            @include flex(column, center, center);
-            font-size: 5rem;
-            color: $primary-color;
-        }
-
-        @include lg {
-            width: 320px;
-            height: 320px;
-        }
-    }
-
-    &__text {
-        p {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-
-            strong {
-                color: $primary-color;
-                font-weight: 600;
-            }
-        }
-    }
-
-    &__highlights {
-        margin: 2.5rem 0;
-        display: grid;
-        gap: 1.5rem;
-
-        @include md {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    &__highlight-item {
-        display: flex;
-        flex-direction: column;
-        background-color: #f8f9fa;
-        border-radius: $border-radius;
-        padding: 1.5rem;
-        transition: transform $transition-speed ease,
-            box-shadow $transition-speed ease;
-
-        &:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        h3 {
-            font-size: 1.1rem;
-            margin: 1rem 0 0.5rem;
-            font-weight: 600;
-        }
-
-        p {
-            font-size: 0.95rem;
-            margin-bottom: 0;
-        }
-    }
-
-    &__highlight-icon {
-        color: $primary-color;
-        font-size: 2rem;
-        height: 50px;
-        display: flex;
-        align-items: center;
-    }
-
-    &__info {
-        display: grid;
-        gap: 1rem;
-        margin-top: 2rem;
-        background-color: #f8f9fa;
-        padding: 1.5rem;
-        border-radius: $border-radius;
-
-        @include md {
-            grid-template-columns: 1fr 1fr;
-        }
-    }
-
-    &__info-item {
-        @include flex(row, flex-start, center);
-        gap: 1rem;
-    }
-
-    &__info-icon {
-        font-size: 1.25rem;
-        color: $primary-color;
-    }
-}
-
-// Education section specific styles
-.education {
-    background-color: #ffffff;
-    position: relative;
-
-    // Decorative element
-    &:before {
-        content: "";
-        position: absolute;
-        top: 50px;
-        right: 50px;
-        width: 150px;
-        height: 150px;
-        background-color: rgba($primary-color, 0.05);
-        border-radius: 50%;
-        z-index: 0;
-    }
-
-    &__courses {
-        margin-top: 1rem;
-
-        h5 {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-
-        ul {
-            display: grid;
-            gap: 0.5rem;
-
-            @include md {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            li {
-                position: relative;
-                margin-bottom: 0;
-            }
-        }
-    }
-}
-
-// Projects
-.projects {
-    background-color: #f8f9fa;
-    position: relative;
-
-    // Decorative element
-    &:before {
-        content: "";
-        position: absolute;
-        bottom: 50px;
-        left: 50px;
-        width: 250px;
-        height: 250px;
-        background-color: rgba($primary-color, 0.05);
-        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-        z-index: 0;
-    }
-
-    &__grid {
-        position: relative;
-        z-index: 1;
-        display: grid;
-        gap: 2rem;
-
-        @include sm {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        @include lg {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-}
-
-// Achievements
-.achievements {
-    background-color: #ffffff;
-    position: relative;
-
-    // Decorative element
-    &:before {
-        content: "";
-        position: absolute;
-        top: 100px;
-        right: 100px;
-        width: 180px;
-        height: 180px;
-        background-color: rgba($primary-color, 0.05);
-        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-        z-index: 0;
-    }
-
-    &__grid {
-        position: relative;
-        z-index: 1;
-        display: grid;
-        gap: 1.5rem;
-
-        @include md {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-}
-
-.achievement-card {
-    display: flex;
-    background-color: white;
-    border-radius: $border-radius;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform $transition-speed ease,
-        box-shadow $transition-speed ease;
-
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    &__icon {
-        margin-right: 1.5rem;
-        font-size: 2.5rem;
-        color: $primary-color;
-
-        .trophy {
-            color: #ffc107;
-        }
-
-        .medal {
-            color: #17a2b8;
-        }
-
-        .certificate {
-            color: #28a745;
-        }
-
-        .award {
-            color: #6f42c1;
-        }
-    }
-
-    &__content {
-        flex: 1;
-    }
-
-    &__title {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-    }
-
-    &__meta {
-        color: $secondary-color;
-        font-size: 0.9rem;
-        margin-bottom: 0.75rem;
-        font-weight: 500;
-    }
-
-    &__description {
-        font-size: 0.95rem;
-        line-height: 1.6;
-    }
-}
-
-// Skills Section styles
-.skills-section {
-    background-color: #f8f9fa;
-    position: relative;
-
-    // Decorative element
-    &:before {
-        content: "";
-        position: absolute;
-        bottom: 80px;
-        left: 80px;
-        width: 220px;
-        height: 220px;
-        background-color: rgba($primary-color, 0.05);
-        border-radius: 30% 70% 50% 50% / 50% 50% 70% 30%;
-        z-index: 0;
-    }
-}
-
-.skills-container {
-    display: grid;
-    gap: 2rem;
-
-    @include md {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    @include lg {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-.skill-category {
-    &__title {
-        font-size: 1.25rem;
-        margin-bottom: 1rem;
-        position: relative;
-        padding-bottom: 0.5rem;
-
-        &:after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background-color: $primary-color;
-        }
-    }
-}
-
-// Contact section
-.contact {
-    background-color: #fafafa;
-
-    &__container {
-        display: grid;
-        gap: 3rem;
-
-        @include md {
-            grid-template-columns: 1fr 1.5fr;
-        }
-    }
-
-    &__info {
-        h3 {
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        p {
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-    }
-
-    &__details {
-        margin-bottom: 2rem;
-    }
-
-    &__detail-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1rem;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-
-    &__icon {
-        color: $primary-color;
-        font-size: 1.25rem;
-        margin-right: 1rem;
-    }
-
-    &__socials {
-        display: flex;
-        gap: 1.5rem;
-    }
-
-    &__social {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: lighten($primary-color, 35%);
-        color: $primary-color;
-        font-size: 1.25rem;
-        transition: all $transition-speed ease;
-
-        &:hover {
-            background-color: $primary-color;
-            color: white;
-            transform: translateY(-3px);
-        }
-    }
-
-    &__form {
-        background-color: white;
-        padding: 2rem;
-        border-radius: $border-radius;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-
-        .form-group {
-            margin-bottom: 1.5rem;
-
-            label {
-                display: block;
-                margin-bottom: 0.5rem;
-                font-weight: 500;
-            }
-
-            input,
-            textarea {
-                width: 100%;
-                padding: 0.75rem;
-                border: 1px solid $border-color;
-                border-radius: $border-radius;
-                font-family: $font-primary;
-                font-size: 1rem;
-                transition: border-color $transition-speed ease;
-
-                &:focus {
-                    outline: none;
-                    border-color: $primary-color;
-                }
-            }
-        }
-
-        button {
-            width: 100%;
-
-            @include md {
-                width: auto;
-                min-width: 150px;
-            }
-        }
-    }
-
-    &__form-status {
-        padding: 0.75rem;
-        margin-bottom: 1.5rem;
-        border-radius: $border-radius;
-
-        &.success {
-            background-color: lighten($success-color, 45%);
-            color: darken($success-color, 10%);
-            border: 1px solid lighten($success-color, 30%);
-        }
-
-        &.error {
-            background-color: lighten(#dc3545, 45%);
-            color: darken(#dc3545, 10%);
-            border: 1px solid lighten(#dc3545, 30%);
-        }
-    }
-}
-
-// Footer
-.footer {
-    background-color: $dark-bg-color;
-    color: $light-text-color;
-    padding: 4rem 0 2rem;
-
-    h2,
-    h3 {
-        color: $light-text-color;
-    }
-
-    &__content {
-        display: grid;
-        gap: 2rem;
-        margin-bottom: 3rem;
-
-        @include md {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    &__logo {
-        h2 {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
-        }
-
-        p {
-            color: darken($light-text-color, 20%);
-        }
-    }
-
-    &__nav {
-        h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-
-        ul {
-            li {
-                margin-bottom: 0.75rem;
-
-                a {
-                    color: darken($light-text-color, 15%);
-                    transition: color $transition-speed ease;
-                    cursor: pointer;
-
-                    &:hover {
-                        color: $primary-color;
-                    }
-                }
-            }
-        }
-    }
-
-    &__social {
-        h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-
-        &-icons {
-            display: flex;
-            gap: 1.25rem;
-
-            a {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                width: 38px;
-                height: 38px;
-                border-radius: 50%;
-                background-color: rgba(255, 255, 255, 0.1);
-                color: $light-text-color;
-                font-size: 1.25rem;
-                transition: all $transition-speed ease;
-
-                &:hover {
-                    background-color: $primary-color;
-                    color: white;
-                    transform: translateY(-3px);
-                }
-            }
-        }
-    }
-
-    &__bottom {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-
-        p {
-            font-size: 0.9rem;
-            color: darken($light-text-color, 30%);
-        }
-    }
-
-    &__scroll-top {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.1);
-        color: $light-text-color;
-        font-size: 1.25rem;
-        cursor: pointer;
-        transition: all $transition-speed ease;
-
-        &:hover {
-            background-color: $primary-color;
-            color: white;
-            transform: translateY(-5px);
-        }
-    }
+  margin-bottom: 3rem;
 }
 
 // Section background patterns
 .bg-pattern-dots {
-    background-image: radial-gradient(
-        rgba($primary-color, 0.05) 2px,
-        transparent 2px
-    );
-    background-size: 20px 20px;
+  background-image: radial-gradient(
+    rgba($primary-color, 0.05) 2px,
+    transparent 2px
+  );
+  background-size: 20px 20px;
 }
 
 .bg-pattern-grid {
-    background-image: linear-gradient(
-            rgba($primary-color, 0.03) 1px,
-            transparent 1px
-        ),
-        linear-gradient(90deg, rgba($primary-color, 0.03) 1px, transparent 1px);
-    background-size: 20px 20px;
+  background-image: linear-gradient(
+      rgba($primary-color, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba($primary-color, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 .bg-pattern-waves {
-    background-image: repeating-linear-gradient(
-        45deg,
-        rgba($primary-color, 0.02) 0px,
-        rgba($primary-color, 0.02) 2px,
-        transparent 2px,
-        transparent 10px
-    );
-}
-
-// Apply patterns to specific sections
-.about {
-    @extend .bg-pattern-dots;
-}
-
-.experience {
-    @extend .bg-pattern-grid;
-}
-
-.projects {
-    @extend .bg-pattern-waves;
-}
-
-.skills-section {
-    @extend .bg-pattern-dots;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba($primary-color, 0.02) 0px,
+    rgba($primary-color, 0.02) 2px,
+    transparent 2px,
+    transparent 10px
+  );
 }
 
 // Scroll to top button
 .scroll-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: $primary-color;
-    color: white;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
 
-    &.visible {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
 
-    &:hover {
-        background-color: darken($primary-color, 10%);
-        transform: translateY(-5px);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    }
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
 
-    svg {
-        font-size: 20px;
-    }
+  svg {
+    font-size: 20px;
+  }
 }
