@@ -72,14 +72,14 @@ const Footer = () => {
                         <h3>Connect With Me</h3>
                         <div className="footer__social-icons">
                             <a
-                                href="https://github.com/yourusername"
+                                href="https://github.com/DeepeshDragoneel"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
                                 <FaGithub />
                             </a>
                             <a
-                                href="https://linkedin.com/in/yourusername"
+                                href="https://www.linkedin.com/in/jakkala-siva-venkata-deepesh-5a367b160/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -92,14 +92,7 @@ const Footer = () => {
                             >
                                 <FaTwitter />
                             </a>
-                            <a
-                                href="https://medium.com/@yourusername"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <FaMedium />
-                            </a>
-                            <a href="mailto:jakkala.deepesh@example.com">
+                            <a href="mailto:deepeshash444@gmail.com">
                                 <FaEnvelope />
                             </a>
                         </div>

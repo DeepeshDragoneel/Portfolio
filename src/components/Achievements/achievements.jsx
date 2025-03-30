@@ -6,41 +6,41 @@ const Achievements = () => {
     const achievements = [
         {
             id: 1,
-            title: "Outstanding Contribution Award",
-            organization: "Tech Innovations Inc.",
-            year: "2023",
+            title: "Winner of Smart India Hackathon",
+            organization: "Government of India",
+            year: "2022",
             description:
-                "Recognized for exceptional leadership in migrating the company's core platform to a microservices architecture, resulting in 35% improved system reliability.",
+                "Won the Smart India Hackathon 2022 Software Edition, a national-level hackathon, for developing an innovative software solution to address a real-world problem.",
             icon: <FaTrophy className="achievement-card__icon trophy" />,
         },
         {
             id: 2,
-            title: "AWS Certified Solutions Architect",
+            title: "AWS Certified Cloud Practitioner",
             organization: "Amazon Web Services",
-            year: "2022",
+            year: "2024",
             description:
-                "Achieved professional-level certification demonstrating expertise in designing distributed systems on AWS.",
+                "Obtained the AWS Certified Cloud Practitioner certification, validating foundational knowledge of AWS cloud services and best practices",
             icon: (
                 <FaCertificate className="achievement-card__icon certificate" />
             ),
         },
         {
             id: 3,
-            title: "Hackathon Winner",
-            organization: "TechCrunch Disrupt",
-            year: "2021",
+            title: "Highest rating of 1450 Specialist at Codeforces, and 2018-5 Star at Codechef",
+            organization: "Codeforces and Codechef",
+            year: "Current",
             description:
-                "Led a team of 4 developers to victory by building an innovative AI-powered accessibility tool for visually impaired users.",
-            icon: <FaMedal className="achievement-card__icon medal" />,
+                "Achieved a top rating of 1450 (Specialist) on Codeforces and a 5-Star rating on Codechef, demonstrating strong problem-solving and algorithmic skills in competitive programming",
+            icon: <FaAward className="achievement-card__icon award" />,
         },
         {
             id: 4,
-            title: "Open Source Contributor",
-            organization: "React Community",
-            year: "2020-Present",
+            title: "Ranked 821 (Country-wise ranking) in Google HashCode 2022",
+            organization: "Google",
+            year: "2022",
             description:
-                "Active contributor to several popular open-source React libraries with over 20 accepted pull requests.",
-            icon: <FaAward className="achievement-card__icon award" />,
+                "Participated in Google HashCode 2022, a global coding competition, where I ranked 821 (Country-wise ranking) among over 100,000 participants",
+            icon: <FaMedal className="achievement-card__icon medal" />,
         },
     ];
 

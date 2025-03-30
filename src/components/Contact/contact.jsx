@@ -7,6 +7,8 @@ import {
     FaLinkedin,
     FaTwitter,
 } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
+import emailjsConfig from "../../config/emailjs";
 import "./contact.scss";
 
 const Contact = () => {
@@ -23,6 +25,8 @@ const Contact = () => {
         message: "",
     });
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -33,23 +37,51 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // In a real application, you would handle form submission to a backend
-        console.log("Form submitted:", formData);
+        setIsLoading(true);
 
-        // Simulate successful submission
-        setFormStatus({
-            submitted: true,
-            error: false,
-            message: "Thank you! Your message has been sent successfully.",
-        });
+        // Get EmailJS configuration from config file
+        const { serviceId, templateId, publicKey } = emailjsConfig;
 
-        // Reset form
-        setFormData({
-            name: "",
-            email: "",
-            subject: "",
-            message: "",
-        });
+        // Prepare template parameters
+        const templateParams = {
+            from_name: formData.name,
+            from_email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+        };
+
+        // Send email using EmailJS
+        emailjs
+            .send(serviceId, templateId, templateParams, publicKey)
+            .then((response) => {
+                console.log("Email sent successfully:", response);
+                setFormStatus({
+                    submitted: true,
+                    error: false,
+                    message:
+                        "Thank you! Your message has been sent successfully.",
+                });
+
+                // Reset form
+                setFormData({
+                    name: "",
+                    email: "",
+                    subject: "",
+                    message: "",
+                });
+            })
+            .catch((error) => {
+                console.error("Failed to send email:", error);
+                setFormStatus({
+                    submitted: true,
+                    error: true,
+                    message:
+                        "Oops! There was an error sending your message. Please try again later.",
+                });
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
     };
 
     return (
@@ -71,21 +103,21 @@ const Contact = () => {
                         <div className="contact__details">
                             <div className="contact__detail-item">
                                 <FaEnvelope className="contact__icon" />
-                                <span>jakkala.deepesh@example.com</span>
+                                <span>deepeshjakkala@gmail.com</span>
                             </div>
                             <div className="contact__detail-item">
                                 <FaPhone className="contact__icon" />
-                                <span>+1 (123) 456-7890</span>
+                                <span>+91-9985452459</span>
                             </div>
                             <div className="contact__detail-item">
                                 <FaMapMarkerAlt className="contact__icon" />
-                                <span>San Francisco, CA</span>
+                                <span>Banglore, India</span>
                             </div>
                         </div>
 
                         <div className="contact__socials">
                             <a
-                                href="https://github.com/yourusername"
+                                href="https://github.com/DeepeshDragoneel"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="contact__social"
@@ -93,7 +125,7 @@ const Contact = () => {
                                 <FaGithub />
                             </a>
                             <a
-                                href="https://linkedin.com/in/yourusername"
+                                href="https://www.linkedin.com/in/jakkala-siva-venkata-deepesh-5a367b160/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="contact__social"
@@ -166,8 +198,12 @@ const Contact = () => {
                                     required
                                 ></textarea>
                             </div>
-                            <button type="submit" className="btn">
-                                Send Message
+                            <button
+                                type="submit"
+                                className="btn"
+                                disabled={isLoading}
+                            >
+                                {isLoading ? "Sending..." : "Send Message"}
                             </button>
                         </form>
                     </div>

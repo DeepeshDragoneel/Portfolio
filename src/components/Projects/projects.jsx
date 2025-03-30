@@ -6,43 +6,78 @@ const Projects = () => {
     const projects = [
         {
             id: 1,
-            title: "E-Commerce Platform",
+            title: "PORTFOLYO",
             description:
-                "A full-stack e-commerce application with product catalog, shopping cart, user authentication, and payment processing.",
-            image: "ecommerce.jpg", // You'll need to add actual images in the assets folder
-            tags: ["React", "Node.js", "Express", "MongoDB", "Stripe API"],
-            github: "https://github.com/yourusername/ecommerce",
-            demo: "https://ecommerce-demo.example.com",
+                "Developed a platform enabling users without web development knowledge to create and customize personal portfolio websites using React, Node.js, and MongoDB.",
+            image: "portfolyo.jpeg", // You'll need to add actual images in the assets folder
+            tags: [
+                "React",
+                "SCSS",
+                "JavaScript",
+                "Node.js",
+                "Express.js",
+                "MongoDB",
+                "Mongoose",
+                "Docker",
+                "GitHub",
+            ],
+            github: "https://github.com/Portfolyo-mern/portfolyo-mern",
+            // demo: "https://ecommerce-demo.example.com",
         },
         {
             id: 2,
-            title: "Task Management System",
+            title: "Test Forge",
             description:
-                "A collaborative task management system with real-time updates, task assignments, and progress tracking.",
-            image: "task-manager.jpg",
-            tags: ["React", "Redux", "Firebase", "Material UI"],
-            github: "https://github.com/yourusername/task-manager",
-            demo: "https://task-manager-demo.example.com",
+                "Designed a VS Code extension that generates unit test cases using Large Language Models (LLMs), enhancing developer productivity with customizable options for specific business logic",
+            image: "testForge.png",
+            tags: [
+                "React",
+                "SCSS",
+                "TypeScript",
+                "Python",
+                "Express.js",
+                "Java",
+            ],
+            // github: "https://github.com/yourusername/task-manager",
+            // demo: "https://task-manager-demo.example.com",
         },
         {
             id: 3,
-            title: "Real-time Chat Application",
+            title: "Geek ConnecKt",
             description:
-                "A real-time chat application supporting private messaging, group chats, and file sharing.",
-            image: "chat-app.jpg",
-            tags: ["React", "Socket.io", "Express", "MongoDB"],
-            github: "https://github.com/yourusername/chat-app",
-            demo: "https://chat-app-demo.example.com",
+                "Built a student social network application with features like achievement posting and chat, facilitating communication within a specific institution using React, GraphQL, and MongoDB.",
+            image: "geekConnect.png",
+            tags: [
+                "React",
+                "SCSS",
+                "JavaScript",
+                "GraphQL",
+                "Cloudinary",
+                "Redis",
+                "Express.js",
+                "MongoDB",
+                "GitHub",
+            ],
+            github: "https://github.com/team-array",
+            // demo: "https://chat-app-demo.example.com",
         },
         {
             id: 4,
-            title: "Weather Forecast App",
+            title: "Annotate-Js",
             description:
-                "A responsive weather application displaying current conditions and 7-day forecasts for any location.",
-            image: "weather-app.jpg",
-            tags: ["React", "OpenWeather API", "Chart.js", "SCSS"],
-            github: "https://github.com/yourusername/weather-app",
-            demo: "https://weather-app-demo.example.com",
+                "Developed Annotate-Js, a JavaScript library that allows users to annotate directly over web pages, implemented with TypeScript, Node.js, and AWS-RDS (MySQL)",
+            image: "annotateJs.png",
+            tags: [
+                "TypeScript",
+                "Node.js",
+                "AWS-RDS",
+                "MySQL",
+                "Redis",
+                "Jest",
+                "React",
+            ],
+            github: "https://github.com/DeepeshDragoneel/Annotate-Js",
+            demo: "https://deepeshdragoneel.github.io/AnnotateJsMainPage/",
         },
     ];
 
@@ -57,8 +92,19 @@ const Projects = () => {
                     {projects.map((project) => (
                         <div className="project-card" key={project.id}>
                             <div className="project-card__image-container">
-                                {/* Replace with actual images later */}
-                                <div className="project-card__image-placeholder"></div>
+                                <img
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "cover",
+                                        borderRadius: "10px",
+                                        boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
+                                        display: project.image ? "block" : "none",
+                                    }}
+                                    src={require(`../../assets/${project.image}`)}
+                                    alt={project.title}
+                                    className="project-card__image"
+                                />
                             </div>
                             <h3 className="project-card__title">
                                 {project.title}
@@ -77,6 +123,9 @@ const Projects = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="btn btn--outline btn--small"
+                                    style={{
+                                        display: project.github ? "block" : "none",
+                                    }}
                                 >
                                     <FaGithub /> Code
                                 </a>
@@ -85,6 +134,9 @@ const Projects = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="btn btn--small"
+                                    style={{
+                                        display: project.demo ? "block" : "none",
+                                    }}
                                 >
                                     <FaExternalLinkAlt /> Demo
                                 </a>
