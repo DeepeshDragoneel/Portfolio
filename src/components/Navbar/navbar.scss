@@ -37,6 +37,11 @@
     &__container {
         @include flex(row, space-between, center);
         align-items: center;
+        padding: 0 2rem;
+        
+        @include md {
+            padding: 0 3rem;
+        }
     }
 
     &__logo {
@@ -45,6 +50,7 @@
         font-size: 1.6rem;
         position: relative;
         padding-left: 1.7rem;
+        margin-right: auto;
         
         &:before {
             content: "</>";
@@ -78,6 +84,8 @@
 
     &__menu {
         @include flex(row, flex-end, center);
+        margin: 0 !important;
+        margin-left: 3rem !important;
 
         @include max-md {
             position: fixed;
@@ -95,12 +103,12 @@
             box-shadow: -2px 0 15px rgba(0, 0, 0, 0.3), 
                         -1px 0 5px rgba(0, 255, 170, 0.2);
             border-left: 1px solid rgba(0, 255, 170, 0.1);
+            margin-left: 0 !important;
 
             &--open {
                 right: 0;
             }
         }
-        margin: 0 !important
     }
 
     &__item {
@@ -204,5 +212,10 @@
         .navbar--scrolled & {
             color: $primary-color;
         }
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
     }
 } 

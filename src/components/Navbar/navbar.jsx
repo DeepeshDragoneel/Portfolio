@@ -82,39 +82,44 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {isMobile && (
-                    <div className="navbar__menu-toggle" onClick={toggleMenu}>
-                        {menuOpen ? <FaTimes /> : <FaBars />}
-                    </div>
-                )}
+                <div className="navbar__right">
+                    {isMobile && (
+                        <div
+                            className="navbar__menu-toggle"
+                            onClick={toggleMenu}
+                        >
+                            {menuOpen ? <FaTimes /> : <FaBars />}
+                        </div>
+                    )}
 
-                <ul
-                    className={`navbar__menu ${
-                        menuOpen ? "navbar__menu--open" : ""
-                    }`}
-                >
-                    {menuItems.map((item) => (
-                        <li key={item.id} className="navbar__item">
-                            <Link
-                                to={item.id}
-                                spy={true}
-                                smooth={true}
-                                offset={-70}
-                                duration={500}
-                                className="navbar__link"
-                                activeClass="navbar__link--active"
-                                onClick={() => setMenuOpen(false)}
-                            >
-                                {item.icon && (
-                                    <span className="navbar__icon">
-                                        {item.icon}
-                                    </span>
-                                )}
-                                {item.label}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
+                    <ul
+                        className={`navbar__menu ${
+                            menuOpen ? "navbar__menu--open" : ""
+                        }`}
+                    >
+                        {menuItems.map((item) => (
+                            <li key={item.id} className="navbar__item">
+                                <Link
+                                    to={item.id}
+                                    spy={true}
+                                    smooth={true}
+                                    offset={-70}
+                                    duration={500}
+                                    className="navbar__link"
+                                    activeClass="navbar__link--active"
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    {item.icon && (
+                                        <span className="navbar__icon">
+                                            {item.icon}
+                                        </span>
+                                    )}
+                                    {item.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         </nav>
     );
