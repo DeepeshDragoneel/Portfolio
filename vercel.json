@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/cyberpunk/(.*)",
-            "destination": "https://deepesh-portfolio-git-cyberpunk-deepesh-jakkalas-projects.vercel.app/ "
+            "destination": "https://deepesh-portfolio-git-cyberpunk-deepesh-jakkalas-projects.vercel.app/"
         }
     ]
 }
