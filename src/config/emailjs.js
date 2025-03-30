@@ -3,9 +3,9 @@
 // You can get these credentials by signing up at https://www.emailjs.com/
 
 const emailjsConfig = {
-    serviceId: "service_lz6wuzb", // The EmailJS Service ID
-    templateId: "template_eoo0m1d", // The EmailJS Template ID
-    publicKey: "G-IJ0wcfG9n25MBzL", // Your EmailJS Public Key
+    serviceId: process.env.REACT_APP_EMAILJS_SERVICE_ID,
+    templateId: process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+    publicKey: process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
 };
 
 export default emailjsConfig;

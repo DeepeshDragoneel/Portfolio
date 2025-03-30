@@ -6,39 +6,35 @@
     position: relative;
     height: 100vh;
     min-height: 600px;
-    background: linear-gradient(135deg, $dark-bg-color 0%, #121212 100%);
+    background: linear-gradient(135deg, $dark-bg-color 0%, #0a0e12 100%);
     overflow: hidden;
     display: flex;
     align-items: center;
 
-    &__particles {
+    &__background {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: $z-particles;
         pointer-events: none;
+        overflow: hidden;
+    }
 
-        #tsparticles {
-            width: 100%;
-            height: 100%;
-            canvas {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100% !important;
-                height: 100% !important;
-                pointer-events: auto;
-            }
-        }
+    .matrix-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.8;
     }
 
     &__container {
         position: relative;
         z-index: 1;
         padding-top: 0;
-        height: 95%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -53,6 +49,12 @@
         animation: fadeIn 0.8s ease-in-out forwards;
         margin-bottom: 2rem;
         margin-top: 2rem;
+        background-color: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(5px);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     &__greeting {
@@ -70,10 +72,11 @@
     &__title {
         font-size: 3.5rem;
         font-weight: 700;
-        margin: 1rem 0 1rem 0;
+        margin: 1rem 0 1.2rem 0;
         background: linear-gradient(90deg, #ffffff, $primary-color);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 10px rgba(0, 255, 170, 0.3);
 
         @include max-md {
             font-size: 2.5rem;
@@ -81,9 +84,10 @@
     }
 
     &__subtitle {
-        font-size: 1.75rem;
+        font-size: 1.3rem;
         font-weight: 500;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
+        color: $light-text-color;
 
         @include max-md {
             font-size: 1.5rem;
@@ -91,7 +95,7 @@
     }
 
     &__description {
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin-bottom: 2.5rem;
         max-width: 700px;
         margin-left: auto;
@@ -131,16 +135,17 @@
     &__social-link {
         color: $light-text-color;
         transition: all $transition-speed ease-in-out;
+        text-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
 
         &:hover {
-            color: $primary-color;
+            color: #00ffaa;
             transform: translateY(-5px);
         }
     }
 
     &__scroll {
         position: absolute;
-        bottom: 2rem;
+        bottom: 1.5rem;
         left: 50%;
         transform: translateX(-50%);
         font-size: 1.5rem;
@@ -149,9 +154,10 @@
         a {
             color: $light-text-color;
             transition: all $transition-speed ease-in-out;
+            text-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
 
             &:hover {
-                color: $primary-color;
+                color: #00ffaa;
             }
         }
     }

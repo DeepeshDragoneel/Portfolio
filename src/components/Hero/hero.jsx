@@ -1,100 +1,102 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-scroll";
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown } from "react-icons/fa";
-import Particles from "react-tsparticles";
 import "./hero.scss";
 
 const Hero = () => {
-    const particlesOptions = {
-        background: {
-            color: {
-                value: "transparent",
-            },
-        },
-        fpsLimit: 60,
-        interactivity: {
-            events: {
-                onClick: {
-                    enable: true,
-                    mode: "push",
-                },
-                onHover: {
-                    enable: true,
-                    mode: "repulse",
-                    distance: 100,
-                },
-                resize: true,
-            },
-            modes: {
-                push: {
-                    quantity: 4,
-                },
-                repulse: {
-                    distance: 100,
-                    duration: 0.4,
-                },
-            },
-        },
-        particles: {
-            color: {
-                value: "#ffffff",
-            },
-            links: {
-                color: "#ffffff",
-                distance: 150,
-                enable: true,
-                opacity: 0.3,
-                width: 1,
-                triangles: {
-                    enable: false,
-                    opacity: 0.1,
-                },
-            },
-            move: {
-                direction: "none",
-                enable: true,
-                outMode: "bounce",
-                random: false,
-                speed: 2,
-                straight: false,
-                attract: {
-                    enable: false,
-                    rotateX: 600,
-                    rotateY: 1200,
-                },
-            },
-            number: {
-                density: {
-                    enable: true,
-                    area: 800,
-                },
-                value: 50,
-            },
-            opacity: {
-                value: 0.4,
-                random: true,
-            },
-            shape: {
-                type: "circle",
-            },
-            size: {
-                random: true,
-                value: 4,
-                animation: {
-                    enable: true,
-                    speed: 3,
-                    minimumValue: 0.1,
-                    sync: false,
-                },
-            },
-        },
-        detectRetina: true,
-    };
+    const canvasRef = useRef(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext("2d");
+        let width = (canvas.width = window.innerWidth);
+        let height = (canvas.height = window.innerHeight);
+
+        // Matrix characters - mix of symbols and digits
+        const characters =
+            "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰヱヲ<>/\\[]{}#$%^&*()+=".split(
+                ""
+            );
+
+        const fontSize = 14;
+        const columns = Math.floor(width / fontSize);
+
+        // Array to store the position of each character
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.floor(Math.random() * -100);
+        }
+
+        // Function to calculate the brightness for a column
+        const getBrightness = (column) => {
+            // Characters at the front should be brighter
+            return 0.3 + Math.random() * 0.3;
+        };
+
+        // Drawing the characters
+        function draw() {
+            // Set background with alpha to create trail effect
+            ctx.fillStyle = "rgba(10, 10, 15, 0.05)";
+            ctx.fillRect(0, 0, width, height);
+
+            for (let i = 0; i < drops.length; i++) {
+                // Generate a random character
+                const text =
+                    characters[Math.floor(Math.random() * characters.length)];
+
+                // Get brightness for this column
+                const brightness = getBrightness(i);
+
+                // Set color to green with random brightness
+                ctx.fillStyle = `rgba(0, 255, 170, ${brightness})`;
+                ctx.font = `${fontSize}px monospace`;
+
+                // Draw the character
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                // Move drops down
+                drops[i]++;
+
+                // If a drop has hit the bottom, reset with random start position
+                if (drops[i] * fontSize > height && Math.random() > 0.975) {
+                    drops[i] = Math.floor(Math.random() * -100);
+                }
+            }
+        }
+
+        // Animation loop
+        const interval = setInterval(draw, 35);
+
+        // Handle window resize
+        const handleResize = () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+
+            // Recalculate columns
+            const newColumns = Math.floor(width / fontSize);
+
+            // Reset drops if needed
+            if (newColumns !== drops.length) {
+                drops.length = 0;
+                for (let i = 0; i < newColumns; i++) {
+                    drops[i] = Math.floor(Math.random() * -100);
+                }
+            }
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        // Cleanup
+        return () => {
+            clearInterval(interval);
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     return (
         <section id="hero" className="hero">
-            <div className="hero__particles">
-                <Particles id="tsparticles" options={particlesOptions} />
+            <div className="hero__background">
+                <canvas ref={canvasRef} className="matrix-canvas"></canvas>
             </div>
             <div className="container hero__container">
                 <div className="hero__content">
@@ -102,11 +104,13 @@ const Hero = () => {
                     <h1 className="hero__title">
                         Jakkala Siva Venkata Deepesh
                     </h1>
-                    <h2 className="hero__subtitle">Software Engineer</h2>
+                    <h2 className="hero__subtitle">
+                        {"</>"} Software Developer {"</>"}
+                    </h2>
                     <p className="hero__description">
-                        A Dynamic Full Stack Web Developer,
-                        Competitive Coder, and aspiring AI Engineer, building
-                        innovative solutions across diverse domains.
+                        A Dynamic Full Stack Web Developer, Competitive Coder,
+                        and aspiring AI Engineer, building innovative solutions
+                        across diverse domains.
                     </p>
                     <div className="hero__cta">
                         <Link
