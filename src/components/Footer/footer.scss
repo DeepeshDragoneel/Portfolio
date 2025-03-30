@@ -1,0 +1,122 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+@import "../../scss/responsive";
+
+.footer {
+    background-color: $dark-bg-color;
+    color: $light-text-color;
+    padding: 4rem 0 2rem;
+
+    h2,
+    h3 {
+        color: $light-text-color;
+    }
+
+    &__content {
+        display: grid;
+        gap: 2rem;
+        margin-bottom: 3rem;
+
+        @include md {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &__logo {
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: darken($light-text-color, 20%);
+        }
+    }
+
+    &__nav {
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        ul {
+            li {
+                margin-bottom: 0.75rem;
+
+                a {
+                    color: darken($light-text-color, 15%);
+                    transition: color $transition-speed ease;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+    }
+
+    &__social {
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        &-icons {
+            display: flex;
+            gap: 1.25rem;
+
+            a {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.1);
+                color: $light-text-color;
+                font-size: 1.25rem;
+                transition: all $transition-speed ease;
+
+                &:hover {
+                    background-color: $primary-color;
+                    color: white;
+                    transform: translateY(-3px);
+                }
+            }
+        }
+    }
+
+    &__bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+        p {
+            font-size: 0.9rem;
+            color: darken($light-text-color, 30%);
+        }
+    }
+
+    &__scroll-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: $light-text-color;
+        font-size: 1.25rem;
+        cursor: pointer;
+        transition: all $transition-speed ease;
+
+        &:hover {
+            background-color: $primary-color;
+            color: white;
+            transform: translateY(-5px);
+        }
+    }
+} 

@@ -1,0 +1,157 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+@import "../../scss/responsive";
+
+.about {
+    background-color: #ffffff;
+    position: relative;
+
+    // Decorative element
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 300px;
+        background-color: rgba($primary-color, 0.05);
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        z-index: 0;
+    }
+
+    &__content {
+        display: grid;
+        gap: 2rem;
+
+        @include md {
+            grid-template-columns: 1fr 2fr;
+            align-items: flex-start;
+        }
+    }
+
+    &__image-container {
+        @include flex(column, center, center);
+    }
+
+    &__image {
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border: 5px solid white;
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: lighten($primary-color, 30%);
+            @include flex(column, center, center);
+            font-size: 5rem;
+            color: $primary-color;
+        }
+
+        @include lg {
+            width: 320px;
+            height: 320px;
+        }
+    }
+
+    &__text {
+        p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+
+            strong {
+                color: $primary-color;
+                font-weight: 600;
+            }
+        }
+    }
+
+    &__highlights {
+        margin: 2.5rem 0;
+        display: grid;
+        gap: 1.5rem;
+
+        @include md {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &__highlight-item {
+        display: flex;
+        flex-direction: column;
+        background-color: #f8f9fa;
+        border-radius: $border-radius;
+        padding: 1.5rem;
+        transition: transform $transition-speed ease,
+            box-shadow $transition-speed ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+    }
+
+    &__highlight-icon {
+        color: $primary-color;
+        font-size: 2rem;
+        height: 50px;
+        display: flex;
+        align-items: center;
+    }
+
+    &__info {
+        display: grid;
+        gap: 1rem;
+        margin-top: 2rem;
+        background-color: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: $border-radius;
+
+        @include md {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    &__info-item {
+        @include flex(row, flex-start, center);
+        gap: 1rem;
+    }
+
+    &__info-icon {
+        font-size: 1.25rem;
+        color: $primary-color;
+    }
+}
+
+// Background pattern
+.bg-pattern-dots {
+    background-image: radial-gradient(
+        rgba($primary-color, 0.05) 2px,
+        transparent 2px
+    );
+    background-size: 20px 20px;
+}
+
+.about {
+    @extend .bg-pattern-dots;
+} 

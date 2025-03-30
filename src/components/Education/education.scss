@@ -1,0 +1,50 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+@import "../../scss/responsive";
+
+.education {
+    background-color: #ffffff;
+    position: relative;
+
+    // Decorative element
+    &:before {
+        content: "";
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        width: 150px;
+        height: 150px;
+        background-color: rgba($primary-color, 0.05);
+        border-radius: 50%;
+        z-index: 0;
+    }
+
+    &__courses {
+        margin-top: 1rem;
+
+        h5 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        ul {
+            display: grid;
+            gap: 0.5rem;
+
+            @include md {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            li {
+                position: relative;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+// Import timeline styles from the experience component
+// Note: This assumes that the timeline styles are already defined in experience.scss
+// and will be included in the main compiled CSS.
+// If you prefer to keep all styles self-contained, you can duplicate the timeline styles here. 

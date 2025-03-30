@@ -1,0 +1,132 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+@import "../../scss/responsive";
+
+.contact {
+    background-color: #fafafa;
+
+    &__container {
+        display: grid;
+        gap: 3rem;
+
+        @include md {
+            grid-template-columns: 1fr 1.5fr;
+        }
+    }
+
+    &__info {
+        h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+    }
+
+    &__details {
+        margin-bottom: 2rem;
+    }
+
+    &__detail-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__icon {
+        color: $primary-color;
+        font-size: 1.25rem;
+        margin-right: 1rem;
+    }
+
+    &__socials {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    &__social {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: lighten($primary-color, 35%);
+        color: $primary-color;
+        font-size: 1.25rem;
+        transition: all $transition-speed ease;
+
+        &:hover {
+            background-color: $primary-color;
+            color: white;
+            transform: translateY(-3px);
+        }
+    }
+
+    &__form {
+        background-color: white;
+        padding: 2rem;
+        border-radius: $border-radius;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+        .form-group {
+            margin-bottom: 1.5rem;
+
+            label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid $border-color;
+                border-radius: $border-radius;
+                font-family: $font-primary;
+                font-size: 1rem;
+                transition: border-color $transition-speed ease;
+
+                &:focus {
+                    outline: none;
+                    border-color: $primary-color;
+                }
+            }
+        }
+
+        button {
+            width: 100%;
+
+            @include md {
+                width: auto;
+                min-width: 150px;
+            }
+        }
+    }
+
+    &__form-status {
+        padding: 0.75rem;
+        margin-bottom: 1.5rem;
+        border-radius: $border-radius;
+
+        &.success {
+            background-color: lighten($success-color, 45%);
+            color: darken($success-color, 10%);
+            border: 1px solid lighten($success-color, 30%);
+        }
+
+        &.error {
+            background-color: lighten(#dc3545, 45%);
+            color: darken(#dc3545, 10%);
+            border: 1px solid lighten(#dc3545, 30%);
+        }
+    }
+} 

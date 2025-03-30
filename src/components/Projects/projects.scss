@@ -1,0 +1,126 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+@import "../../scss/responsive";
+
+.projects {
+    background-color: #f8f9fa;
+    position: relative;
+
+    // Decorative element
+    &:before {
+        content: "";
+        position: absolute;
+        bottom: 50px;
+        left: 50px;
+        width: 250px;
+        height: 250px;
+        background-color: rgba($primary-color, 0.05);
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        z-index: 0;
+    }
+
+    &__grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: 2rem;
+
+        @include sm {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include lg {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+// Project Card
+.project-card {
+    @include card;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__image-container {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        border-radius: $border-radius $border-radius 0 0;
+        margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+    }
+
+    &__image-placeholder {
+        width: 100%;
+        height: 100%;
+        background-color: lighten($primary-color, 35%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $primary-color;
+        font-size: 3rem;
+    }
+
+    &__title {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+    }
+
+    &__description {
+        flex-grow: 1;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+
+        span {
+            background-color: lighten($primary-color, 35%);
+            color: darken($primary-color, 10%);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+    }
+
+    &__links {
+        display: flex;
+        gap: 1rem;
+        margin-top: auto;
+
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            padding: 0.4rem 1rem;
+
+            &--small {
+                font-size: 0.85rem;
+                padding: 0.4rem 1rem;
+            }
+        }
+    }
+}
+
+// Background pattern
+.bg-pattern-waves {
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba($primary-color, 0.02) 0px,
+        rgba($primary-color, 0.02) 2px,
+        transparent 2px,
+        transparent 10px
+    );
+}
+
+.projects {
+    @extend .bg-pattern-waves;
+} 
