@@ -1,6 +1,17 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-scroll";
-import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown } from "react-icons/fa";
+import {
+    FaGithub,
+    FaLinkedin,
+    FaEnvelope,
+    FaArrowDown,
+    FaFileDownload,
+    FaEnvelopeOpen,
+    FaLaptopCode,
+    FaTerminal,
+    FaCode,
+} from "react-icons/fa";
+import resumePDF from "../../assets/Jakkala_Siva_Venkata_Deepesh.pdf";
 import "./hero.scss";
 
 const Hero = () => {
@@ -119,19 +130,28 @@ const Hero = () => {
                             smooth={true}
                             offset={-70}
                             duration={500}
-                            className="btn"
+                            className="btn btn--contact"
                         >
-                            Contact Me
+                            <FaTerminal className="btn-icon" /> {">>"}{" "}
+                            Contact_Me
                         </Link>
+                        <a
+                            href={resumePDF}
+                            download="Jakkala_Siva_Venkata_Deepesh_Resume.pdf"
+                            className="btn btn--resume"
+                        >
+                            <FaFileDownload className="btn-icon" /> GET
+                            resume.pdf
+                        </a>
                         <Link
                             to="projects"
                             spy={true}
                             smooth={true}
                             offset={-70}
                             duration={500}
-                            className="btn btn--outline"
+                            className="btn btn--projects"
                         >
-                            View Projects
+                            <FaCode className="btn-icon" /> ./view_projects
                         </Link>
                     </div>
                 </div>
