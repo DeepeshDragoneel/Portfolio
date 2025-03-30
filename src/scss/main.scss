@@ -118,10 +118,18 @@ img {
   align-items: center;
   z-index: 1000;
   transition: opacity 0.5s ease, visibility 0.5s ease;
+  color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  align-items: center;
 
   &.hidden {
     opacity: 0;
     visibility: hidden;
+  }
+
+  &__text {
+    margin-left: 1rem;
   }
 
   &__spinner {

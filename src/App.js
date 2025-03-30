@@ -29,7 +29,7 @@ function App() {
         return (
             <div className="loading">
                 <div className="loading__spinner"></div>
-                <p>Loading...</p>
+                <p className="loading__text">Loading...</p>
             </div>
         );
     }
