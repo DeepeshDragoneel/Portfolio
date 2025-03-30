@@ -84,8 +84,13 @@ const Projects = () => {
     return (
         <section id="projects" className="section projects">
             <div className="container">
-                <div className="section__title">
-                    <h2>Projects</h2>
+                <div className="section__header">
+                    <h2 className="section__title">
+                        <span>&lt;</span> Projects <span>/&gt;</span>
+                    </h2>
+                    <p className="section__subtitle">
+                        A showcase of my recent development work
+                    </p>
                 </div>
 
                 <div className="projects__grid">
@@ -98,8 +103,11 @@ const Projects = () => {
                                         height: "100%",
                                         objectFit: "cover",
                                         borderRadius: "10px",
-                                        boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
-                                        display: project.image ? "block" : "none",
+                                        boxShadow:
+                                            "0 0 10px 0 rgba(0, 0, 0, 0.1)",
+                                        display: project.image
+                                            ? "block"
+                                            : "none",
                                     }}
                                     src={require(`../../assets/${project.image}`)}
                                     alt={project.title}
@@ -124,7 +132,9 @@ const Projects = () => {
                                     rel="noopener noreferrer"
                                     className="btn btn--outline btn--small"
                                     style={{
-                                        display: project.github ? "block" : "none",
+                                        display: project.github
+                                            ? "block"
+                                            : "none",
                                     }}
                                 >
                                     <FaGithub /> Code
@@ -135,7 +145,9 @@ const Projects = () => {
                                     rel="noopener noreferrer"
                                     className="btn btn--small"
                                     style={{
-                                        display: project.demo ? "block" : "none",
+                                        display: project.demo
+                                            ? "block"
+                                            : "none",
                                     }}
                                 >
                                     <FaExternalLinkAlt /> Demo

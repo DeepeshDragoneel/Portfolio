@@ -42,8 +42,13 @@ const Education = () => {
     return (
         <section id="education" className="section education">
             <div className="container">
-                <div className="section__title">
-                    <h2>Education</h2>
+                <div className="section__header">
+                    <h2 className="section__title">
+                        <span>&lt;</span> Education <span>/&gt;</span>
+                    </h2>
+                    <p className="section__subtitle">
+                        My academic background and qualifications
+                    </p>
                 </div>
 
                 <div

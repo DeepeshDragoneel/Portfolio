@@ -35,6 +35,7 @@ const ScrollToTop = () => {
             aria-label="Scroll to top"
         >
             <FaArrowUp />
+            <span className="scroll-to-top__glitch"></span>
         </button>
     );
 };

@@ -47,8 +47,13 @@ const Achievements = () => {
     return (
         <section id="achievements" className="section achievements">
             <div className="container">
-                <div className="section__title">
-                    <h2>Achievements</h2>
+                <div className="section__header">
+                    <h2 className="section__title">
+                        <span>&lt;</span> Achievements <span>/&gt;</span>
+                    </h2>
+                    <p className="section__subtitle">
+                        Recognition and accomplishments in my career
+                    </p>
                 </div>
 
                 <div className="achievements__grid">

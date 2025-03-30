@@ -12,8 +12,12 @@ import Footer from "./components/Footer/footer";
 import ScrollToTop from "./components/ScrollToTop/scrollToTop";
 import "./scss/main.scss";
 
-// Simple section divider component
-const SectionDivider = () => <div className="section-divider"></div>;
+// Enhanced cyber section divider
+const SectionDivider = ({ sectionName }) => (
+    <div className="section-divider">
+        <span className="section-divider__text">{sectionName || "</>"}</span>
+    </div>
+);
 
 function App() {
     const [loading, setLoading] = useState(true);
@@ -29,28 +33,42 @@ function App() {
         return (
             <div className="loading">
                 <div className="loading__spinner"></div>
-                <p className="loading__text">Loading...</p>
+                <p className="loading__text">Initializing System</p>
             </div>
         );
     }
 
     return (
-        <div className="app">
+        <div className="app cyberpunk-theme">
             <Navbar />
             <Hero />
-            <About />
-            <SectionDivider />
-            <Experience />
-            <SectionDivider />
-            <Education />
-            <SectionDivider />
-            <Projects />
-            <SectionDivider />
-            <Achievements />
-            <SectionDivider />
-            <Skills />
-            <SectionDivider />
-            <Contact />
+            <div className="cyberpunk-section cyberpunk-section--about bg-pattern-dots">
+                <About />
+            </div>
+            <SectionDivider sectionName="01" />
+            <div className="cyberpunk-section cyberpunk-section--experience bg-pattern-circuit">
+                <Experience />
+            </div>
+            <SectionDivider sectionName="02" />
+            <div className="cyberpunk-section cyberpunk-section--education bg-pattern-grid">
+                <Education />
+            </div>
+            <SectionDivider sectionName="03" />
+            <div className="cyberpunk-section cyberpunk-section--projects bg-pattern-hexagon">
+                <Projects />
+            </div>
+            <SectionDivider sectionName="04" />
+            <div className="cyberpunk-section cyberpunk-section--achievements bg-pattern-waves">
+                <Achievements />
+            </div>
+            <SectionDivider sectionName="05" />
+            <div className="cyberpunk-section cyberpunk-section--skills bg-pattern-dots">
+                <Skills />
+            </div>
+            <SectionDivider sectionName="06" />
+            <div className="cyberpunk-section cyberpunk-section--contact bg-pattern-circuit">
+                <Contact />
+            </div>
             <Footer />
             <ScrollToTop />
         </div>
