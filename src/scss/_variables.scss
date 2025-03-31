@@ -1,19 +1,18 @@
 // Colors
-$primary-color: #00ffaa;
-$secondary-color: #00c8ff;
-$accent-color: #ff00aa;
-$background-color: #0a0e12;
-$dark-bg-color: #030508;
-$text-color: #e0e0e0;
-$heading-color: #ffffff;
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$background-color: #f8f9fa;
+$dark-bg-color: #343a40;
+$text-color: #212529;
+$heading-color: #212529;
 $light-text-color: #f8f9fa;
-$success-color: #00d87b;
-$border-color: rgba(0, 255, 170, 0.3);
+$success-color: #28a745;
+$border-color: #dee2e6;
 
 // Fonts
 $font-primary: "Roboto", sans-serif;
 $font-secondary: "Poppins", sans-serif;
-$font-code: "Fira Code", "Courier New", monospace;
+$font-code: "Fira Code", monospace;
 
 // Sizing
 $container-width: 1200px;
@@ -25,12 +24,3 @@ $z-nav: 1000;
 $z-modal: 2000;
 $z-tooltip: 3000;
 $z-particles: -1;
-
-// Cyberpunk-specific
-$shadow-glow: 0 0 10px rgba(0, 255, 170, 0.3);
-$shadow-glow-blue: 0 0 10px rgba(0, 200, 255, 0.3); 
-$shadow-glow-pink: 0 0 10px rgba(255, 0, 170, 0.3);
-$gradient-green: linear-gradient(135deg, $primary-color, #00b380);
-$gradient-blue: linear-gradient(135deg, $secondary-color, #0070ff);
-$gradient-pink: linear-gradient(135deg, $accent-color, #ff007b);
-$cyberpunk-clip: polygon(0 10%, 10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%);

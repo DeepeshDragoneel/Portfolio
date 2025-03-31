@@ -87,8 +87,13 @@ const Contact = () => {
     return (
         <section id="contact" className="section contact">
             <div className="container">
-                <div className="section__title">
-                    <h2>Contact Me</h2>
+                <div className="section__header">
+                    <h2 className="section__title">
+                        <span>&lt;</span> Contact Me <span>/&gt;</span>
+                    </h2>
+                    <p className="section__subtitle">
+                        Get in touch with me for collaborations or opportunities
+                    </p>
                 </div>
 
                 <div className="contact__container">

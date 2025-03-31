@@ -1,27 +1,29 @@
-@import "../../scss/variables";
+@import "../../scss/variables-cyberpunk";
 @import "../../scss/mixins";
 @import "../../scss/responsive";
 
 .about {
-    background-color: #ffffff;
     position: relative;
-
+    
     // Decorative element
     &:before {
         content: "";
         position: absolute;
-        top: 0;
-        right: 0;
-        width: 300px;
-        height: 300px;
-        background-color: rgba($primary-color, 0.05);
+        top: 50px;
+        right: 50px;
+        width: 250px;
+        height: 250px;
+        background: radial-gradient(circle, rgba($primary-color, 0.1) 0%, rgba($primary-color, 0) 70%);
         border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
         z-index: 0;
+        filter: blur(20px);
     }
 
     &__content {
         display: grid;
         gap: 2rem;
+        position: relative;
+        z-index: 1;
 
         @include md {
             grid-template-columns: 1fr 2fr;
@@ -38,8 +40,8 @@
         height: 280px;
         border-radius: 50%;
         overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        border: 5px solid white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 255, 170, 0.2);
+        border: 5px solid rgba(0, 255, 170, 0.2);
         position: relative;
 
         img {
@@ -51,7 +53,7 @@
         &-placeholder {
             width: 100%;
             height: 100%;
-            background-color: lighten($primary-color, 30%);
+            background-color: rgba($primary-color, 0.1);
             @include flex(column, center, center);
             font-size: 5rem;
             color: $primary-color;
@@ -67,10 +69,12 @@
         p {
             margin-bottom: 1.5rem;
             line-height: 1.8;
+            color: $text-color;
 
             strong {
                 color: $primary-color;
                 font-weight: 600;
+                text-shadow: 0 0 5px rgba(0, 255, 170, 0.5);
             }
         }
     }
@@ -88,26 +92,45 @@
     &__highlight-item {
         display: flex;
         flex-direction: column;
-        background-color: #f8f9fa;
-        border-radius: $border-radius;
+        background: rgba(10, 15, 20, 0.8);
+        border: 1px solid rgba(0, 255, 170, 0.2);
+        border-radius: 4px;
         padding: 1.5rem;
-        transition: transform $transition-speed ease,
-            box-shadow $transition-speed ease;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        
+        // Cyberpunk trim line
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: $gradient-green;
+            box-shadow: $shadow-glow;
+        }
 
         &:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 255, 170, 0.2);
+            border-color: rgba(0, 255, 170, 0.4);
         }
 
         h3 {
             font-size: 1.1rem;
             margin: 1rem 0 0.5rem;
             font-weight: 600;
+            color: $light-text-color;
+            font-family: $font-code;
         }
 
         p {
             font-size: 0.95rem;
             margin-bottom: 0;
+            color: $text-color;
         }
     }
 
@@ -117,29 +140,54 @@
         height: 50px;
         display: flex;
         align-items: center;
+        text-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
     }
 
     &__info {
         display: grid;
         gap: 1rem;
         margin-top: 2rem;
-        background-color: #f8f9fa;
+        background: rgba(10, 15, 20, 0.8);
+        border: 1px solid rgba(0, 255, 170, 0.2);
+        border-radius: 4px;
         padding: 1.5rem;
-        border-radius: $border-radius;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
 
         @include md {
             grid-template-columns: 1fr 1fr;
+        }
+        
+        // Cyberpunk trim line
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: $gradient-green;
+            box-shadow: $shadow-glow;
+        }
+        
+        &:hover {
+            border-color: rgba(0, 255, 170, 0.4);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 255, 170, 0.2);
         }
     }
 
     &__info-item {
         @include flex(row, flex-start, center);
         gap: 1rem;
+        color: $text-color;
     }
 
     &__info-icon {
         font-size: 1.25rem;
         color: $primary-color;
+        text-shadow: 0 0 5px rgba(0, 255, 170, 0.5);
     }
 }
 
@@ -150,6 +198,7 @@
         transparent 2px
     );
     background-size: 20px 20px;
+    position: relative;
 }
 
 .about {

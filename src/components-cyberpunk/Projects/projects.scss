@@ -1,9 +1,8 @@
-@import "../../scss/variables";
+@import "../../scss/variables-cyberpunk";
 @import "../../scss/mixins";
 @import "../../scss/responsive";
 
 .projects {
-    background-color: #f8f9fa;
     position: relative;
 
     // Decorative element
@@ -14,9 +13,10 @@
         left: 50px;
         width: 250px;
         height: 250px;
-        background-color: rgba($primary-color, 0.05);
+        background: radial-gradient(circle, rgba($primary-color, 0.1) 0%, rgba($primary-color, 0) 70%);
         border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
         z-index: 0;
+        filter: blur(20px);
     }
 
     &__grid {
@@ -37,24 +37,61 @@
 
 // Project Card
 .project-card {
-    @include card;
+    background: rgba(10, 15, 20, 0.8);
+    border: 1px solid rgba(0, 255, 170, 0.2);
+    border-radius: 4px;
+    padding: 1.5rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
     height: 100%;
     display: flex;
     flex-direction: column;
+    color: $text-color;
+    
+    // Cyberpunk trim line
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: $gradient-green;
+        box-shadow: $shadow-glow;
+    }
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 255, 170, 0.2);
+        border-color: rgba(0, 255, 170, 0.4);
+    }
 
     &__image-container {
-        // width: 100%;
         padding: 10px;
         height: 200px;
         overflow: hidden;
         border-radius: $border-radius $border-radius 0 0;
         margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+        position: relative;
+        border-bottom: 1px solid rgba(0, 255, 170, 0.2);
+        
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(to top, rgba(10, 15, 20, 0.9), transparent);
+        }
     }
 
     &__image-placeholder {
         width: 100%;
         height: 100%;
-        background-color: lighten($primary-color, 35%);
+        background-color: rgba(0, 255, 170, 0.05);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -66,6 +103,9 @@
         font-size: 1.25rem;
         margin-bottom: 0.75rem;
         font-weight: 600;
+        color: $light-text-color;
+        font-family: $font-code;
+        letter-spacing: 0.5px;
     }
 
     &__description {
@@ -73,6 +113,7 @@
         margin-bottom: 1.5rem;
         line-height: 1.6;
         font-size: 0.95rem;
+        color: $text-color;
     }
 
     &__tags {
@@ -82,12 +123,21 @@
         margin-bottom: 1.5rem;
 
         span {
-            background-color: lighten($primary-color, 35%);
-            color: darken($primary-color, 10%);
+            background-color: rgba(0, 255, 170, 0.1);
+            color: $primary-color;
             padding: 0.25rem 0.75rem;
-            border-radius: 20px;
+            border-radius: 2px;
             font-size: 0.8rem;
             font-weight: 500;
+            font-family: $font-code;
+            border: 1px solid rgba(0, 255, 170, 0.2);
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            
+            &:hover {
+                background-color: rgba(0, 255, 170, 0.2);
+                box-shadow: 0 0 10px rgba(0, 255, 170, 0.2);
+            }
         }
     }
 
@@ -102,6 +152,15 @@
             gap: 0.5rem;
             font-size: 0.9rem;
             padding: 0.4rem 1rem;
+            font-family: $font-code;
+            
+            svg {
+                transition: transform 0.3s ease;
+            }
+            
+            &:hover svg {
+                transform: translateX(3px);
+            }
 
             &--small {
                 font-size: 0.85rem;

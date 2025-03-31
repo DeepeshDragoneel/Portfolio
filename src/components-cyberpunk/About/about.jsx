@@ -15,8 +15,13 @@ const About = () => {
     return (
         <section id="about" className="section about">
             <div className="container">
-                <div className="section__title">
-                    <h2>About Me</h2>
+                <div className="section__header">
+                    <h2 className="section__title">
+                        <span>&lt;</span> About Me <span>/&gt;</span>
+                    </h2>
+                    <p className="section__subtitle">
+                        Get to know more about my background and skills
+                    </p>
                 </div>
 
                 <div className="about__content">
@@ -53,20 +58,17 @@ const About = () => {
                             technologies, including LLMs.
                         </p>
                         <p>
-                            At{" "}
-                            <strong>
-                                Palo Alto Networks, Inc.
-                            </strong>
-                            , I have a proven track record of contributing to
-                            critical projects, with a focus on optimizing
-                            performance and improving operational efficiency. I
-                            am eager to leverage my skills and passion to tackle
-                            new challenges and build impactful solutions.
-                            My approach to software development combines
-                            technical expertise with a user-centered mindset,
-                            ensuring that the applications I build not only
-                            function flawlessly but also provide exceptional
-                            user experiences.
+                            At <strong>Palo Alto Networks, Inc.</strong>, I have
+                            a proven track record of contributing to critical
+                            projects, with a focus on optimizing performance and
+                            improving operational efficiency. I am eager to
+                            leverage my skills and passion to tackle new
+                            challenges and build impactful solutions. My
+                            approach to software development combines technical
+                            expertise with a user-centered mindset, ensuring
+                            that the applications I build not only function
+                            flawlessly but also provide exceptional user
+                            experiences.
                         </p>
 
                         <div className="about__highlights">

@@ -50,8 +50,14 @@ const Experience = () => {
     return (
         <section id="experience" className="section experience">
             <div className="container">
-                <div className="section__title">
-                    <h2>Professional Experience</h2>
+                <div className="section__header">
+                    <h2 className="section__title">
+                        <span>&lt;</span> Professional Experience{" "}
+                        <span>/&gt;</span>
+                    </h2>
+                    <p className="section__subtitle">
+                        My work history and roles in the industry
+                    </p>
                 </div>
 
                 <div

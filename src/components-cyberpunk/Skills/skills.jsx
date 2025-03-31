@@ -79,8 +79,13 @@ const Skills = () => {
     return (
         <section id="skills" className="section skills-section">
             <div className="container">
-                <div className="section__title">
-                    <h2>Technical Skills</h2>
+                <div className="section__header">
+                    <h2 className="section__title">
+                        <span>&lt;</span> Technical Skills <span>/&gt;</span>
+                    </h2>
+                    <p className="section__subtitle">
+                        My expertise in various technologies and tools
+                    </p>
                 </div>
 
                 <div className="skills-container">
