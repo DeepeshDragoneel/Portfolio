@@ -116,7 +116,7 @@ const Hero = () => {
                         Jakkala Siva Venkata Deepesh
                     </h1>
                     <h2 className="hero__subtitle">
-                        {"</>"} Software Developer {"</>"}
+                        {"</>"} Senior Software Developer {"</>"}
                     </h2>
                     <p className="hero__description">
                         A Dynamic Full Stack Web Developer, Competitive Coder,
